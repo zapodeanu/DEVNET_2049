@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module DEVNET_2049_DDA_CL</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>DEVNET_2049_DDA_CL</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/Users/gzapodea/PythonCode/DEVNET_2049/DEVNET_2049_DDA_CL.py">/Users/gzapodea/PythonCode/DEVNET_2049/DEVNET_2049_DDA_CL.py</a></font></td></tr></table>
+    <p><tt>#&nbsp;developed&nbsp;by&nbsp;Gabi&nbsp;Zapodeanu,&nbsp;TSA,&nbsp;GSS,&nbsp;Cisco&nbsp;Systems</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="PIL.Image.html">PIL.Image</a><br>
+<a href="PIL.ImageDraw.html">PIL.ImageDraw</a><br>
+</td><td width="25%" valign=top><a href="PIL.ImageFont.html">PIL.ImageFont</a><br>
+<a href="json.html">json</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="requests.html">requests</a><br>
+</td><td width="25%" valign=top><a href="time.html">time</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-add_membership"><strong>add_membership</strong></a>(room_id, email_invite)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;add&nbsp;membership&nbsp;to&nbsp;the&nbsp;room&nbsp;with&nbsp;the&nbsp;room&nbsp;id<br>
+API&nbsp;call&nbsp;to&nbsp;Spark&nbsp;-&nbsp;'/memberships'<br>
+:param&nbsp;room_id:&nbsp;Spark&nbsp;room&nbsp;id<br>
+:param&nbsp;email_invite:&nbsp;Spark&nbsp;member&nbsp;email&nbsp;to&nbsp;invite&nbsp;to&nbsp;join&nbsp;the&nbsp;room<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-all_client_number"><strong>all_client_number</strong></a>()</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;find&nbsp;out&nbsp;how&nbsp;many&nbsp;wireless&nbsp;clients&nbsp;are&nbsp;visible&nbsp;in&nbsp;the&nbsp;environment<br>
+REST&nbsp;API&nbsp;call&nbsp;to&nbsp;CMX&nbsp;-&nbsp;/api/location/v2/clients/count<br>
+:param<br>
+:return:&nbsp;The&nbsp;total&nbsp;number&nbsp;of&nbsp;clients,&nbsp;associated&nbsp;and&nbsp;not&nbsp;associated&nbsp;with&nbsp;the&nbsp;MDE&nbsp;SSID</tt></dd></dl>
+ <dl><dt><a name="-check_ap_status"><strong>check_ap_status</strong></a>(mac_add, ticket)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;check&nbsp;the&nbsp;status&nbsp;of&nbsp;the&nbsp;AP&nbsp;last&nbsp;connected&nbsp;to&nbsp;the&nbsp;disconnected&nbsp;AGV.<br>
+REST&nbsp;API&nbsp;call&nbsp;to&nbsp;APIC-EM&nbsp;+&nbsp;'/network-device/'<br>
+:param&nbsp;mac_add:&nbsp;the&nbsp;AP&nbsp;MAC&nbsp;address<br>
+:param&nbsp;ticket:&nbsp;APIc_ME&nbsp;auth&nbsp;ticket<br>
+:return:&nbsp;The&nbsp;AP&nbsp;APIC-EM&nbsp;id,&nbsp;name,&nbsp;reachability&nbsp;status</tt></dd></dl>
+ <dl><dt><a name="-check_cmx_connected_clients"><strong>check_cmx_connected_clients</strong></a>()</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;connect&nbsp;to&nbsp;CMX&nbsp;to&nbsp;find&nbsp;out:<br>
+-&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;clients<br>
+-&nbsp;the&nbsp;total&nbsp;number&nbsp;of&nbsp;clients&nbsp;associated&nbsp;to&nbsp;the&nbsp;MDE&nbsp;SSID<br>
+-&nbsp;will&nbsp;create&nbsp;a&nbsp;list&nbsp;for&nbsp;all&nbsp;associated&nbsp;clients<br>
+-&nbsp;each&nbsp;list&nbsp;element&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;that&nbsp;includes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;MAC&nbsp;address,&nbsp;IP&nbsp;address,&nbsp;x/y&nbsp;coordinates&nbsp;on&nbsp;the&nbsp;map<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;MAC&nbsp;address&nbsp;of&nbsp;the&nbsp;AP&nbsp;connected&nbsp;to&nbsp;client<br>
+REST&nbsp;API&nbsp;call&nbsp;to&nbsp;CMX&nbsp;-&nbsp;/api/location/v2/clients<br>
+:param<br>
+:return:&nbsp;list&nbsp;of&nbsp;dictionaries.&nbsp;Each&nbsp;item&nbsp;in&nbsp;the&nbsp;list&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;with&nbsp;the&nbsp;above&nbsp;client&nbsp;information</tt></dd></dl>
+ <dl><dt><a name="-check_missing_agv"><strong>check_missing_agv</strong></a>(agv_mac_list)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;loop&nbsp;to&nbsp;check&nbsp;every&nbsp;10&nbsp;seconds&nbsp;if&nbsp;we&nbsp;lost&nbsp;connectivity&nbsp;to&nbsp;AGV's<br>
+It&nbsp;will&nbsp;require&nbsp;an&nbsp;input&nbsp;with&nbsp;the&nbsp;AGV's&nbsp;MAC&nbsp;addresses<br>
+It&nbsp;will&nbsp;update&nbsp;a&nbsp;list&nbsp;which&nbsp;includes&nbsp;this&nbsp;info&nbsp;for&nbsp;all&nbsp;associated&nbsp;clients<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;each&nbsp;list&nbsp;element&nbsp;is&nbsp;a&nbsp;dictionary&nbsp;that&nbsp;includes:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;MAC&nbsp;address,&nbsp;IP&nbsp;address,&nbsp;x/y&nbsp;coordinates&nbsp;on&nbsp;the&nbsp;map<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;the&nbsp;MAC&nbsp;address&nbsp;of&nbsp;the&nbsp;AP&nbsp;previously&nbsp;connected&nbsp;to&nbsp;client<br>
+The&nbsp;function&nbsp;will&nbsp;update&nbsp;the&nbsp;database&nbsp;if&nbsp;the&nbsp;current&nbsp;status&nbsp;of&nbsp;clients.<br>
+:param&nbsp;agv_mac_list:&nbsp;list&nbsp;of&nbsp;all&nbsp;AGV&nbsp;MAC&nbsp;addresses<br>
+:return:&nbsp;Missing&nbsp;AGV&nbsp;info&nbsp;-&nbsp;MAC&nbsp;address,&nbsp;IP&nbsp;Address,&nbsp;x/y&nbsp;coordinates<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and&nbsp;the&nbsp;MAC&nbsp;address&nbsp;of&nbsp;the&nbsp;last&nbsp;AP&nbsp;connected&nbsp;to&nbsp;client</tt></dd></dl>
+ <dl><dt><a name="-check_switch_status"><strong>check_switch_status</strong></a>(ap_id, ticket)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;check&nbsp;the&nbsp;status&nbsp;of&nbsp;the&nbsp;Access&nbsp;Switch&nbsp;connected&nbsp;to&nbsp;the&nbsp;AP<br>
+REST&nbsp;API&nbsp;call&nbsp;to&nbsp;APIC-EM&nbsp;+&nbsp;'/topology/physical-topology'<br>
+:param&nbsp;ap_id:&nbsp;APIC-EM&nbsp;AP&nbsp;id<br>
+:param&nbsp;ticket:&nbsp;APIC-EM&nbsp;auth&nbsp;ticket<br>
+:return:&nbsp;The&nbsp;Access&nbsp;Switch&nbsp;name,&nbsp;management&nbsp;IP&nbsp;address,&nbsp;reachability,&nbsp;switchport,&nbsp;switchport_status</tt></dd></dl>
+ <dl><dt><a name="-create_path_visualisation"><strong>create_path_visualisation</strong></a>(src_ip, dest_ip, ticket)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;create&nbsp;a&nbsp;new&nbsp;Path&nbsp;Visualisation&nbsp;between&nbsp;the&nbsp;source&nbsp;IP&nbsp;address&nbsp;{src_ip}&nbsp;and&nbsp;the<br>
+destination&nbsp;IP&nbsp;address&nbsp;{dest_ip}<br>
+:param&nbsp;src_ip:&nbsp;Source&nbsp;IP&nbsp;address<br>
+:param&nbsp;dest_ip:&nbsp;Destination&nbsp;IP&nbsp;address<br>
+:param&nbsp;ticket:&nbsp;APIC-EM&nbsp;ticket<br>
+:return:&nbsp;APIC-EM&nbsp;path&nbsp;visualisation&nbsp;id</tt></dd></dl>
+ <dl><dt><a name="-create_spark_room"><strong>create_spark_room</strong></a>(room_name)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;create&nbsp;a&nbsp;Spark&nbsp;room.<br>
+API&nbsp;call&nbsp;to&nbsp;Spark&nbsp;-&nbsp;'/rooms'<br>
+:param&nbsp;room_name:&nbsp;The&nbsp;new&nbsp;room&nbsp;title<br>
+:return:&nbsp;Spark&nbsp;room&nbsp;id</tt></dd></dl>
+ <dl><dt><a name="-delete_room"><strong>delete_room</strong></a>(room_id)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;delete&nbsp;a&nbsp;Spark&nbsp;room<br>
+API&nbsp;call&nbsp;to&nbsp;Spark&nbsp;+&nbsp;'/rooms'<br>
+:param&nbsp;room_id:&nbsp;Spark&nbsp;room&nbsp;id<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-get_cmx_ap_info"><strong>get_cmx_ap_info</strong></a>(campus, building, floor, ap_name)</dt><dd><tt>The&nbsp;function&nbsp;will&nbsp;get&nbsp;the&nbsp;x/y&nbsp;coordinates&nbsp;of&nbsp;the&nbsp;AP&nbsp;with&nbsp;the&nbsp;name&nbsp;{ap_name}&nbsp;located&nbsp;on<br>
+the&nbsp;floor&nbsp;with&nbsp;the&nbsp;name&nbsp;{floor},&nbsp;located&nbsp;in&nbsp;the&nbsp;specified&nbsp;building&nbsp;and&nbsp;campus<br>
+:param&nbsp;campus:&nbsp;campus&nbsp;name<br>
+:param&nbsp;building:&nbsp;building&nbsp;name<br>
+:param&nbsp;floor:&nbsp;floor&nbsp;name<br>
+:param&nbsp;ap_name:&nbsp;AP&nbsp;name<br>
+:return:&nbsp;x/y&nbsp;coordinates,&nbsp;from&nbsp;the&nbsp;top&nbsp;left&nbsp;corner&nbsp;of&nbsp;the&nbsp;image</tt></dd></dl>
+ <dl><dt><a name="-get_cmx_map"><strong>get_cmx_map</strong></a>(campus, building, floor, file)</dt><dd><tt>The&nbsp;function&nbsp;will&nbsp;get&nbsp;the&nbsp;floor&nbsp;map&nbsp;for&nbsp;the&nbsp;floor&nbsp;with&nbsp;the&nbsp;name&nbsp;{floor},<br>
+located&nbsp;in&nbsp;the&nbsp;specified&nbsp;building&nbsp;and&nbsp;campus.<br>
+REST&nbsp;API&nbsp;call&nbsp;to&nbsp;CMX&nbsp;-&nbsp;'api/config/v1/maps/image/'&nbsp;+&nbsp;campus/building/floor<br>
+:param&nbsp;campus:&nbsp;campus&nbsp;name<br>
+:param&nbsp;building:&nbsp;building&nbsp;name<br>
+:param&nbsp;floor:&nbsp;floor&nbsp;name<br>
+:param&nbsp;file:&nbsp;file&nbsp;name&nbsp;to&nbsp;save&nbsp;the&nbsp;image&nbsp;to<br>
+:return:&nbsp;save&nbsp;the&nbsp;floor&nbsp;map&nbsp;image</tt></dd></dl>
+ <dl><dt><a name="-get_device_id"><strong>get_device_id</strong></a>(device_name, ticket)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;find&nbsp;the&nbsp;APIC-EM&nbsp;device&nbsp;id&nbsp;for&nbsp;the&nbsp;device&nbsp;with&nbsp;the&nbsp;name&nbsp;{device_name}<br>
+:param&nbsp;device_name:&nbsp;device&nbsp;hostname<br>
+:param&nbsp;ticket:&nbsp;APIC-EM&nbsp;ticket<br>
+:return:&nbsp;APIC-EM&nbsp;device&nbsp;id</tt></dd></dl>
+ <dl><dt><a name="-get_path_visualisation_info"><strong>get_path_visualisation_info</strong></a>(path_id, ticket)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;return&nbsp;the&nbsp;path&nbsp;visualisation&nbsp;details&nbsp;for&nbsp;the&nbsp;APIC-EM&nbsp;path&nbsp;visualisation&nbsp;{id}<br>
+:param&nbsp;path_id:&nbsp;APIC-EM&nbsp;path&nbsp;visualisation&nbsp;id<br>
+:param&nbsp;ticket:&nbsp;APIC-EM&nbsp;ticket<br>
+:return:&nbsp;Path&nbsp;visualisation&nbsp;details&nbsp;in&nbsp;a&nbsp;list&nbsp;[device,interface_out,interface_in,device...]</tt></dd></dl>
+ <dl><dt><a name="-get_service_ticket"><strong>get_service_ticket</strong></a>()</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;generate&nbsp;a&nbsp;ticket&nbsp;to&nbsp;access&nbsp;APIC-EM<br>
+API&nbsp;call&nbsp;to&nbsp;APIC-Em&nbsp;+&nbsp;'/ticket'<br>
+:return:&nbsp;APIC-EM&nbsp;ticket</tt></dd></dl>
+ <dl><dt><a name="-image_process_annotate"><strong>image_process_annotate</strong></a>(in_image, out_image, text, color, font_size, x, y)</dt><dd><tt>The&nbsp;function&nbsp;will&nbsp;annotate&nbsp;an&nbsp;image&nbsp;{in_image}.&nbsp;The&nbsp;{text}&nbsp;will&nbsp;be&nbsp;marked&nbsp;on&nbsp;the&nbsp;image&nbsp;with&nbsp;the&nbsp;{color}&nbsp;at<br>
+coordinates&nbsp;{x,y}<br>
+:param&nbsp;in_image:&nbsp;source&nbsp;image&nbsp;file<br>
+:param&nbsp;out_image:&nbsp;destination&nbsp;image&nbsp;file<br>
+:param&nbsp;text:&nbsp;the&nbsp;annotation&nbsp;text<br>
+:param&nbsp;font_size:&nbsp;text&nbsp;font&nbsp;size<br>
+:param&nbsp;color:&nbsp;color<br>
+:param&nbsp;x:&nbsp;x&nbsp;coordinate<br>
+:param&nbsp;y:&nbsp;y&nbsp;coordinate<br>
+:return:&nbsp;It&nbsp;will&nbsp;save&nbsp;the&nbsp;annotated&nbsp;image&nbsp;with&nbsp;the&nbsp;name&nbsp;{out_image}</tt></dd></dl>
+ <dl><dt><a name="-main"><strong>main</strong></a>()</dt><dd><tt>Automated&nbsp;Guided&nbsp;Vehicles&nbsp;(AGVs)&nbsp;are&nbsp;critical&nbsp;to&nbsp;the&nbsp;engine&nbsp;manufacturing&nbsp;process.&nbsp;Each&nbsp;AGV&nbsp;hosts&nbsp;one&nbsp;or&nbsp;more<br>
+Programmable&nbsp;Logic&nbsp;Controllers&nbsp;(PLCs)&nbsp;that&nbsp;use&nbsp;wireless&nbsp;to&nbsp;communicate&nbsp;with&nbsp;Human&nbsp;Machine&nbsp;Interfaces&nbsp;(HMIs)<br>
+connected&nbsp;to&nbsp;the&nbsp;plant&nbsp;automation&nbsp;network.&nbsp;Manufacturing&nbsp;lines&nbsp;will&nbsp;stop&nbsp;if&nbsp;there&nbsp;is&nbsp;a&nbsp;interruption<br>
+of&nbsp;communication.<br>
+&nbsp;<br>
+We&nbsp;can&nbsp;automate&nbsp;the&nbsp;steps&nbsp;required&nbsp;to&nbsp;detect&nbsp;and&nbsp;quick&nbsp;start&nbsp;the&nbsp;troubleshooting&nbsp;of&nbsp;the&nbsp;disconnected&nbsp;PLC.<br>
+The&nbsp;script&nbsp;will:<br>
+&nbsp;<br>
+-&nbsp;Find&nbsp;out&nbsp;the&nbsp;disconnected&nbsp;AGV&nbsp;number&nbsp;and&nbsp;the&nbsp;IP&nbsp;address&nbsp;using&nbsp;a&nbsp;database&nbsp;lookup<br>
+-&nbsp;Provide&nbsp;the&nbsp;last&nbsp;known&nbsp;location&nbsp;information&nbsp;from&nbsp;CMX<br>
+-&nbsp;Access&nbsp;Point&nbsp;reachability&nbsp;status<br>
+-&nbsp;Access&nbsp;switch&nbsp;reachability&nbsp;and&nbsp;switchport&nbsp;status<br>
+-&nbsp;Create&nbsp;a&nbsp;Spark&nbsp;Room&nbsp;and&nbsp;invite&nbsp;engineering&nbsp;resources<br>
+-&nbsp;Notification&nbsp;using&nbsp;Tropo<br>
+&nbsp;<br>
+This&nbsp;approach&nbsp;could&nbsp;be&nbsp;applied&nbsp;for&nbsp;monitoring&nbsp;of&nbsp;any&nbsp;critical&nbsp;wireless&nbsp;assets&nbsp;in&nbsp;healthcare,&nbsp;financial,<br>
+retail&nbsp;and&nbsp;utilities.</tt></dd></dl>
+ <dl><dt><a name="-mde_initial_info"><strong>mde_initial_info</strong></a>()</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;print&nbsp;the&nbsp;initial&nbsp;information&nbsp;about&nbsp;the&nbsp;AGV's:<br>
+-&nbsp;number&nbsp;of&nbsp;AGV's<br>
+-&nbsp;the&nbsp;dictionary&nbsp;&nbsp;that&nbsp;includes&nbsp;the&nbsp;AGV's&nbsp;MAC&nbsp;addresses&nbsp;and&nbsp;the&nbsp;cart&nbsp;number<br>
+-&nbsp;the&nbsp;list&nbsp;with&nbsp;all&nbsp;AGV's&nbsp;MAC&nbsp;addresses<br>
+:param&nbsp;:&nbsp;global&nbsp;Dictionary&nbsp;AGV_DICT&nbsp;with&nbsp;the&nbsp;AGV&nbsp;database<br>
+:return:&nbsp;the&nbsp;list&nbsp;of&nbsp;all&nbsp;AGV&nbsp;MAC&nbsp;addresses</tt></dd></dl>
+ <dl><dt><a name="-post_message"><strong>post_message</strong></a>(room_id, message)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;post&nbsp;a&nbsp;message&nbsp;in&nbsp;a&nbsp;Spark&nbsp;room<br>
+APIC&nbsp;call&nbsp;to&nbsp;Spark&nbsp;-&nbsp;'/messages'<br>
+:param&nbsp;room_id:&nbsp;Spark&nbsp;room&nbsp;id<br>
+:param&nbsp;message:&nbsp;Text&nbsp;message&nbsp;to&nbsp;be&nbsp;posted<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-post_spark_room_file"><strong>post_spark_room_file</strong></a>(room_id, file_name, file_type, file_path)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;post&nbsp;the&nbsp;file&nbsp;with&nbsp;the&nbsp;name&nbsp;{file_name},&nbsp;type&nbsp;of&nbsp;file&nbsp;{file_type},&nbsp;<br>
+from&nbsp;the&nbsp;local&nbsp;machine&nbsp;folder&nbsp;with&nbsp;the&nbsp;path&nbsp;{file_path},&nbsp;to&nbsp;the&nbsp;Spark&nbsp;room&nbsp;with&nbsp;the&nbsp;id&nbsp;{room_id}<br>
+Followed&nbsp;by&nbsp;API&nbsp;call&nbsp;/messages<br>
+:param&nbsp;room_id:&nbsp;Spark&nbsp;room&nbsp;id<br>
+:param&nbsp;file_name:&nbsp;File&nbsp;name&nbsp;to&nbsp;be&nbsp;uploaded<br>
+:param&nbsp;file_type:&nbsp;File&nbsp;type<br>
+:param&nbsp;file_path:&nbsp;File&nbsp;path&nbsp;local&nbsp;on&nbsp;the&nbsp;computer<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-pprint"><strong>pprint</strong></a>(json_data)</dt><dd><tt>Pretty&nbsp;print&nbsp;JSON&nbsp;formatted&nbsp;data<br>
+:param&nbsp;json_data:<br>
+:return:</tt></dd></dl>
+ <dl><dt><a name="-sync_device"><strong>sync_device</strong></a>(device_name, ticket)</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;sync&nbsp;the&nbsp;device&nbsp;configuration&nbsp;from&nbsp;the&nbsp;device&nbsp;with&nbsp;the&nbsp;name&nbsp;{device_name}<br>
+:param&nbsp;device_name:&nbsp;device&nbsp;hostname<br>
+:param&nbsp;ticket:&nbsp;APIC-EM&nbsp;ticket<br>
+:return:&nbsp;the&nbsp;response,&nbsp;202&nbsp;if&nbsp;sync&nbsp;initiated</tt></dd></dl>
+ <dl><dt><a name="-tropo_notification"><strong>tropo_notification</strong></a>()</dt><dd><tt>This&nbsp;function&nbsp;will&nbsp;call&nbsp;Tropo&nbsp;for&nbsp;a&nbsp;voice&nbsp;notification<br>
+The&nbsp;MDENotification.py&nbsp;script&nbsp;is&nbsp;hosted&nbsp;by&nbsp;Tropo:<br>
+-----<br>
+call&nbsp;("+15033094949")<br>
+say&nbsp;("Urgent!&nbsp;MDE&nbsp;Line&nbsp;Outage!&nbsp;Check&nbsp;Spark&nbsp;Room&nbsp;for&nbsp;details")<br>
+-----<br>
+We&nbsp;will&nbsp;send&nbsp;a&nbsp;get&nbsp;request&nbsp;to&nbsp;launch&nbsp;this&nbsp;script&nbsp;that&nbsp;will&nbsp;call&nbsp;my&nbsp;cell&nbsp;phone<br>
+and&nbsp;Tropo&nbsp;voice&nbsp;will&nbsp;read&nbsp;the&nbsp;message.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>AGV_DICT</strong> = {'70:ec:e4:74:f7:d4': 5, '78:a3:e4:f1:de:f2': 10}<br>
+<strong>CMX_AUTH</strong> = &lt;requests.auth.HTTPBasicAuth object&gt;<br>
+<strong>CMX_PASSW</strong> = 'Clive!17'<br>
+<strong>CMX_URL</strong> = 'https://172.16.11.27/'<br>
+<strong>CMX_USER</strong> = 'python'<br>
+<strong>EM_PASSW</strong> = 'Clive.17'<br>
+<strong>EM_URL</strong> = 'https://172.16.11.30/api/v1'<br>
+<strong>EM_USER</strong> = 'python'<br>
+<strong>HMI</strong> = '172.16.11.2'<br>
+<strong>IT_ENG_EMAIL</strong> = 'gabriel.zapodeanu@gmail.com'<br>
+<strong>LINE</strong> = '______________________________________<font color="#c040c0">\n</font>'<br>
+<strong>MDE_SSID</strong> = 'CLIVE'<br>
+<strong>OT_ENG_EMAIL</strong> = '...@...'<br>
+<strong>PI_AUTH</strong> = &lt;requests.auth.HTTPBasicAuth object&gt;<br>
+<strong>PI_PASSW</strong> = 'Clive.17'<br>
+<strong>PI_URL</strong> = 'https://172.16.11.25'<br>
+<strong>PI_USER</strong> = 'python'<br>
+<strong>ROOM_NAME</strong> = 'MDE Line Outage'<br>
+<strong>SPARK_AUTH</strong> = 'Bearer OTkyMTU2NGUtYjkzZi00OTQ3LTlj.....'<br>
+<strong>SPARK_URL</strong> = 'https://api.ciscospark.com/v1'<br>
+<strong>TROPO_KEY</strong> = '58456f49686444754646556a694f55624d4....'</td></tr></table>
+</body></html>
